@@ -1,30 +1,30 @@
 # MDA WorkDesk
 
-A full-stack operations platform built for Maa Durga Associates — a petroleum & industrial construction company — to manage sites, field employees, tasks, and document workflows across four states. Replaces spreadsheets and WhatsApp coordination with a real admin + employee portal.
+Designed and developed a full-stack Operations Management Platform for Maa Durga Associates, a Petroleum and Industrial construction company, to streamline site operations across four States. The system centralizes field Employee Management, Daily Task Tracking with pending reminders , and document workflows — replacing manual spreadsheet and WhatsApp-based processes with a structured Admin and Employee Portal.
 
 > **Note:** This is a portfolio showcase for a client project. The production codebase, business data, and client assets remain private; this repo documents the architecture, feature set, and technical decisions without exposing proprietary code or client information. All screenshots below use synthetic demo data ("Demo Employee", "Demo Fuel Station") in an isolated database — no real employee, client, or site information is shown.
 
-**Live public site:** [associatesmaadurga.in](https://associatesmaadurga.in) — the landing page is open to everyone; the admin/employee portal behind it requires real staff credentials, so there's nothing further a visitor can reach.
+**Live public site:** [associatesmaadurga.in](https://associatesmaadurga.in) — the landing page is open to everyone; the Admin/Employee portal behind it requires actual Admin/Employee credentials
 
 ---
 
 ## The flow, end to end
 
 ### 1. Public landing page
-Anyone visiting `associatesmaadurga.in` sees the company's public marketing site — services, project photos, client logos, state-by-state coverage, and a company timeline. This is what gets linked from LinkedIn, business cards, and search.
+Anyone visiting `associatesmaadurga.in` sees the company's public marketing site — services, project photos, clients, state-by-state coverage, and a company timeline. This is what gets linked from LinkedIn, business cards, and search.
 
 ![Public landing page](images/01-landing-page.png)
 
 ### 2. Login
-Staff sign in with an Employee ID (not email) and password — deliberate, since not every field crew member has an email address. Two roles branch from here: **Admin** and **Employee**, each landing on a completely different UI built for their actual job.
+The platform uses Employee ID–based authentication instead of email login, a deliberate design decision to accommodate field staff who may not have an email address. Based on assigned role, users are directed to one of two purpose-built interfaces — an Admin dashboard for oversight and management, and an Employee portal focused on day-to-day task execution — ensuring each user only sees what's relevant to their role.
 
 ![Login screen](images/02-login.png)
 
-New employees are issued a temporary password by an admin and are forced through a change-password screen on first login before they can reach their dashboard.
+New employees are issued a temporary password by an Admin and are forced through a change-password screen on first login before they can reach their dashboard.
 
 ---
 
-### 3. Admin portal — the office side
+### 3. Admin portal — The office side
 
 **Dashboard** — at-a-glance counts: pending requests, active sites, employee headcount, completed sites.
 
@@ -39,7 +39,7 @@ Creating an employee auto-generates their Employee ID and a temporary password, 
 
 ![Employee credentials modal](images/06-employee-credentials-modal.png)
 
-**Sites** — register a petrol pump, CNG station, or industrial project. Each site tracks a status lifecycle (Pending Activation → Active → On Hold → Completed) and gets a dedicated Google Drive folder structure created automatically, so all site photos and documents live in Drive rather than on the app server.
+**Sites** — register a Petrol pump, CNG station, Consumer Pump or industrial project. Each site tracks a status lifecycle (Pending Activation → Active → On Hold → Completed) and gets a dedicated Google Drive folder structure created automatically, so all site photos and documents live in Drive rather than on the app server.
 
 ![Sites list with progress bars](images/07-sites-list.png)
 ![Add Site form](images/08-add-site.png)
@@ -53,14 +53,14 @@ Opening a site shows its full profile, assigned employees, and live progress:
 ![Site timeline and daily progress](images/10-site-timeline.png)
 ![Activation checklist](images/11-activation-checklist.png)
 
-**Tasks** — assign work items to employees independent of any specific site (e.g. "service the compressor at three locations this week"). Each task tracks priority, due date, and a per-assignee status through Pending → In Progress → Submitted → Approved/Rejected.
+**Tasks** — assign work items to employees independent of any specific site (e.g. "service the compressor at three locations this week"). Each task tracks priority, due date, and a per-assignee status through Pending → In Progress → Submitted → Approved/Rejected. Also reminders are also given at regular interval if the task are not completed and closed in the portal.
 
 ![Tasks board](images/12-tasks-board.png)
 ![Assign Task form](images/13-assign-task.png)
 
 **Requests / Approvals / Inbox** — when a field employee marks a site's activation or completion checklist as done, it becomes a *request* an admin has to approve — the paper-trail control point before a site officially changes status.
 
-**Vendors** — manages the "Our Clients & Industry Partners" logos shown on the public landing page (BPCL, IOCL, Hindalco, etc. in production). Editing this list here updates the public site automatically.
+**Vendors** — manages the "Our Clients & Industry Partners"  shown on the public landing page (BPCL, IOCL, Hindalco, etc. in production). Editing this list here updates the public site automatically.
 
 ![Vendors page](images/14-vendors.png)
 
@@ -80,7 +80,7 @@ Deliberately built mobile-first (bottom tab navigation: Home / Sites / Tasks / D
 
 ![Employee dashboard](images/16-employee-dashboard.png)
 
-**Tasks** — assigned work items with a "Start Task" action. Starting a task timestamps it and moves it to In Progress; completing one requires remarks and photo evidence, which becomes a submission an admin reviews.
+**Tasks** — assigned work items with a "Start Task" action. Starting a task timestamps it and moves it to In Progress; completing one requires remarks and photo evidence, which becomes a submission for an admin reviews.
 
 ![Employee Tasks tab](images/17-employee-tasks.png)
 ![Task in progress, ready for completion](images/18-employee-task-in-progress.png)
